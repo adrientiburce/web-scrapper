@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "canyon-scrapper"
+version = "0.1.0"
+description = ""
+authors = ["Adrien Tiburce <adrien.tiburce@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+beautifulsoup4 = "^4.10.0"
+selenium = "^4.0.0"
+requests = "^2.26.0"
+notify2 = "^0.3.1"
+python-dotenv = "^0.19.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
