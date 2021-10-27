@@ -39,8 +39,8 @@ def send_webhook(size: str):
         raise Exception(response.status_code, response.text)
 
 def check_stock():
-    page = requests.get(PRODUCT_URL)
-    # page = requests.get('https://www.canyon.com/fr-fr/velos-de-route/velos-endurance/endurace/al/endurace-7/2942.html')
+    # page = requests.get(PRODUCT_URL)
+    page = requests.get('https://www.canyon.com/fr-fr/velos-de-route/velos-endurance/endurace/al/endurace-7/2942.html')
 
     soup = BeautifulSoup(page.content, 'html.parser') # Parsing content using beautifulsoup
     
@@ -49,10 +49,9 @@ def check_stock():
 
     for i, availability in enumerate(availabilities_blocks):
         size = size_blocks[i].text.strip()
-        print(size)
         if  availability.text.__contains__('Livraison'):
             print(f"Dispo en taille {size} !")
-            # send_webhook(size)
+            send_webhook(size)
         else:
             print(f"Taille {size}, Non disponible :(")
 

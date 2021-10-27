@@ -125,14 +125,6 @@ optional = false
 python-versions = ">=3.5"
 
 [[package]]
-name = "notify2"
-version = "0.3.1"
-description = "Python interface to DBus notifications"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "outcome"
 version = "1.1.0"
 description = "Capture the outcome of Python function calls."
@@ -375,7 +367,7 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "c40ab5c7091e9ded6d8f6c97432fb189b6cc21c2dfee7a65d72765d72195983b"
+content-hash = "56a248743a1725aeb3560402d1f8528ef2664cf630d173d046cea60d2d1442e6"
 
 [metadata.files]
 async-generator = [
@@ -491,10 +483,6 @@ idna = [
 more-itertools = [
     {file = "more-itertools-8.10.0.tar.gz", hash = "sha256:1debcabeb1df793814859d64a81ad7cb10504c24349368ccf214c664c474f41f"},
     {file = "more_itertools-8.10.0-py3-none-any.whl", hash = "sha256:56ddac45541718ba332db05f464bebfb0768110111affd27f66e0051f276fa43"},
-]
-notify2 = [
-    {file = "notify2-0.3.1-py2.py3-none-any.whl", hash = "sha256:d7e27e63c2120c074225e526754101e22f029e38e5f002b1ceaa965258bf1073"},
-    {file = "notify2-0.3.1.tar.gz", hash = "sha256:33fa108d50c42f3cd3407cc437518ad3f6225d1bb237011f16393c9dd3ce197d"},
 ]
 outcome = [
     {file = "outcome-1.1.0-py2.py3-none-any.whl", hash = "sha256:c7dd9375cfd3c12db9801d080a3b63d4b0a261aa996c4c13152380587288d958"},
