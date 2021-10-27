@@ -3,13 +3,16 @@ import threading
 import json
 import sys
 import os
+import time, datetime
+
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 load_dotenv()  # take environment variables from .env.
 
-TIME_RANGE = 60 # time interval in seconds
+TIME_RANGE = 10 # time interval in seconds
 PRODUCT_URL = "https://www.canyon.com/fr-fr/velos-de-route/velos-de-course/ultimate/cf-sl/ultimate-cf-sl-7/2751.html"
+PRODUCT_WITH_STOCK = "https://www.canyon.com/fr-fr/velo-electrique/velo-route-electrique/endurace-on/endurace-on-7.0/2486.html"
 
 def send_webhook(size: str):
     url = os.environ.get("SLACK_HOOK_URL") 
@@ -39,14 +42,18 @@ def send_webhook(size: str):
         raise Exception(response.status_code, response.text)
 
 def check_stock():
-    # page = requests.get(PRODUCT_URL)
-    page = requests.get('https://www.canyon.com/fr-fr/velo-electrique/velo-route-electrique/endurace-on/endurace-on-7.0/2486.html')
+    print(f"-- {datetime.datetime.now()} --")
+    page = requests.get(PRODUCT_URL)
+    # page = requests.get(PRODUCT_WITH_STOCK)
 
     soup = BeautifulSoup(page.content, 'html.parser') # Parsing content using beautifulsoup
     
     size_blocks = soup.select("div.productConfiguration__variantType")
     availabilities_blocks = soup.select("div.productConfiguration__availabilityMessage")
 
+    if len(size_blocks) == 0:
+        raise Exception("product page empty")
+    
     for i, availability in enumerate(availabilities_blocks):
         size = size_blocks[i].text.strip()
         if  'Livraison' in availability.text or 'En stock' in availability.text:
@@ -55,6 +62,7 @@ def check_stock():
         else:
             print(f"Taille {size}, Non disponible :(")
 
-    threading.Timer(TIME_RANGE, check_stock).start()
 
-check_stock()
+while True:
+    check_stock()
+    time.sleep(TIME_RANGE)
