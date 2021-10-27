@@ -40,7 +40,7 @@ def send_webhook(size: str):
 
 def check_stock():
     # page = requests.get(PRODUCT_URL)
-    page = requests.get('https://www.canyon.com/fr-fr/velos-de-route/velos-endurance/endurace/al/endurace-7/2942.html')
+    page = requests.get('https://www.canyon.com/fr-fr/velo-electrique/velo-route-electrique/endurace-on/endurace-on-7.0/2486.html')
 
     soup = BeautifulSoup(page.content, 'html.parser') # Parsing content using beautifulsoup
     
@@ -49,7 +49,7 @@ def check_stock():
 
     for i, availability in enumerate(availabilities_blocks):
         size = size_blocks[i].text.strip()
-        if  availability.text.__contains__('Livraison'):
+        if  'Livraison' in availability.text or 'En stock' in availability.text:
             print(f"Dispo en taille {size} !")
             send_webhook(size)
         else:
