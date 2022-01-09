@@ -21,7 +21,6 @@ def send_webhook(size: str):
     slack_data = {
         "username": "Canyon stock bot",
         "icon_emoji": ":man-biking:",
-        "channel" : "#cycling",
         "attachments": [
             {
                 "color": "#9733EE",
@@ -61,7 +60,6 @@ def check_stock():
             send_webhook(size)
         else:
             print(f"Taille {size}, Non disponible :(")
-
 
 while True:
     check_stock()
