@@ -51,7 +51,7 @@ def check_stock():
     availabilities_blocks = soup.select("div.productConfiguration__availabilityMessage")
 
     if len(size_blocks) == 0:
-        raise Exception("product page empty")
+        print(Exception("product page empty"))
     
     for i, availability in enumerate(availabilities_blocks):
         size = size_blocks[i].text.strip()
